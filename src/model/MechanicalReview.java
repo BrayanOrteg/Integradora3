@@ -22,8 +22,47 @@ public class MechanicalReview extends Document{
 
     }
 
+    
+    public String mechanicalReviewCode(int[][] numbers) {
+        
+         code ="";
+        int p=0, rest=numbers[0].length-1;
+		for (int i=0; i< numbers.length; i++ ) { // filas numbers.length
+
+            
+                for (int j = 0; j < numbers[0].length; j++) { //columnas numbers[0].length
+                    
+                    if (j==numbers[0].length-1){
+                        p=1;
+                    }
+
+                    if(p==1 && i!=3){
+                        j=rest-i;
+                        
+                    }else{
+                        p=0;
+                    }
+                    code += numbers[i][j] + " ";
+
+                    if(p==1){
+                        j=numbers[0].length-1;
+                    }
+                }
+             }
+             return code;
+		}
+		
+
+
     public String toString(){
-        return "**MECHANICAL REVIEW**\n" + super.toString()+ "\nThe gas leves of the vehicule are: " + gasLeves;
+        int i = getYear();
+        
+        if(i !=0){
+        return "**MECHANICAL REVIEW**\n" + "\nThe price of the document is: "+ price + "\nThe year is: " + year + "\nThe image= \n"+ "\n"+printImage(image) + "\n"+ 
+                "\nThe Mechanical review number is: "+ mechanicalReviewCode(image)+"\nThe gas leves of the vehicule are: " + gasLeves;
+        }else{
+            return "Dont have Mechanical review";
+        }
     }
     
 }

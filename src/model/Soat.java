@@ -7,6 +7,8 @@ public class Soat extends Document{
     *  Description: this var its the coverage of the soat
     * */
     private double coverage;
+
+
                         
 	/**
     *  Description: Method constructor
@@ -21,8 +23,32 @@ public class Soat extends Document{
         
     }
 
+    public String soatCode(int[][] numbers) {
+        
+        code ="";
+		for (int i=0; i< numbers.length; i++ ) { // filas numbers.length
+
+            if(i== numbers.length-1){
+                for (int j = 0; j < numbers[0].length; j++) { //columnas numbers[0].length
+                    code += numbers[i][j] + " ";
+                }
+             }else{
+                code += numbers[i][0] + " ";
+             }
+		}
+		return code;
+
+    }
+
     public String toString(){
-        return "**SOAT**\n"+ super.toString() + "\nThe coverage of the soat is: " + coverage + "\n";
+        int i=getYear();
+
+        if(i !=0){
+        return "**SOAT**\n"+ "\nThe price of the document is: "+ price + "\nThe year is: " + year + "\nThe image= \n"+ "\n"+printImage(image) + "\n"
+                +"\nThe Soat number is: "+ soatCode(image)+"\nThe coverage of the soat is: " + coverage + "\n";
+        }else{
+            return "Dont have Soat";
+        }
     }
     
 }

@@ -17,12 +17,19 @@ public class Motorcycle extends Vehicule implements iCalculateTotalSoldPrice {
     *  Description: this var its the consumption of the motorcycle
     * */
     private double consumption;
+    
+    private Soat soat;
+
+    private Document propertyC;
+
+    private MechanicalReview mechanical;
 
 
 
             
 	/**
     *  Description: Method constructor
+    	 * @param id <int>, must be initialized
 	 * @param basePrice <double>, must be initialized 
 	 * @param soldPrice <double>, must be initialized
 	 * @param mark <String>, must be initialized
@@ -38,13 +45,17 @@ public class Motorcycle extends Vehicule implements iCalculateTotalSoldPrice {
      * @param consumption <double>, must be initialized
     * */
 
-    public Motorcycle(double basePrice, double soldPrice, String mark, String model, double cylinderCapacity,
+    public Motorcycle(int id, double basePrice, double soldPrice, String mark, int model, double cylinderCapacity,
             double milage, TYPEVEHICULE type, String plate, Document propertyC, Soat soat, MechanicalReview mechanical, TYPEMOTORCYCLE typeMotorcycle, double capacityGasoline, double consumption) {
-            super(basePrice, soldPrice, mark, model, cylinderCapacity, milage, type, plate, propertyC, soat, mechanical);
+            super(id, basePrice, soldPrice, mark, model, cylinderCapacity, milage, type, plate, propertyC, soat, mechanical);
 
         this.typeMotorcycle=typeMotorcycle;
         this.capacityGasoline=capacityGasoline;
         this.consumption=consumption;
+        this.soat=soat;
+        this.propertyC=propertyC;
+        this.mechanical=mechanical;
+        
     }
     
     /**
@@ -61,21 +72,36 @@ public class Motorcycle extends Vehicule implements iCalculateTotalSoldPrice {
         if (yearSoatt==0 || yearMechanical==0){
             totalSold+=500000;
         }
+        
+        if(type==TYPEVEHICULE.USED){
+            basePrice=basePrice-(basePrice*0.02);
+        }
 
         totalSold+=basePrice+(basePrice*0.04);
 
-        if(type==TYPEVEHICULE.USED){
-            totalSold=totalSold-(totalSold*0.02);
-        }
 
         return "The total sold price is: "+ totalSold;
 
     }
 
+    public Soat getSoat(){
+        return soat;
+    }
+
+    public Document getPropertyC(){
+        return propertyC;
+    }
+
+    public MechanicalReview getMechanical(){
+        return mechanical;
+    }
+
+    
+
     @Override
     public String toString(){
         return super.toString() + "\nThe type of the motorcyle is: " + typeMotorcycle + "\nThe capacity of the gasoline is: " + capacityGasoline +
-         "\nThe consumption is: " + consumption + "\n"+ totalSoldPrice();
+         "\nThe consumption is: " + consumption + "\n"+ "\n"+totalSoldPrice()+"\nThe id of the vehicule is: " + super.getId();
     }
 
     

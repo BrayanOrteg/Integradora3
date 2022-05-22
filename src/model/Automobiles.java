@@ -22,6 +22,7 @@ public class Automobiles extends Vehicule{
         
 	/**
     *  Description: Method constructor
+    	 * @param id <int>, must be initialized
 	 * @param basePrice <double>, must be initialized 
 	 * @param soldPrice <double>, must be initialized
 	 * @param mark <String>, must be initialized
@@ -37,9 +38,9 @@ public class Automobiles extends Vehicule{
      * @param polarized <String>, must be initialized
     * */
 
-    public Automobiles(double basePrice, double soldPrice, String mark, String model, double cylinderCapacity,
+    public Automobiles(int id, double basePrice, double soldPrice, String mark, int model, double cylinderCapacity,
             double milage, TYPEVEHICULE type, String plate,Document propertyC, Soat soat, MechanicalReview mechanical,TYPEAUTOMOBILE typeAutomobiles, int numOfDoors, String polarized) {
-        super(basePrice, soldPrice, mark, model, cylinderCapacity, milage, type, plate, propertyC, soat, mechanical);
+        super(id,basePrice, soldPrice, mark, model, cylinderCapacity, milage, type, plate, propertyC, soat, mechanical);
 
         this.typeAutomobiles=typeAutomobiles;
         this.numOfDoors=numOfDoors;

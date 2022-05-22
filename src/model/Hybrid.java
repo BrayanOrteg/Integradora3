@@ -32,11 +32,19 @@ public class Hybrid extends Automobiles implements iCalculateTotalSoldPrice{
     * */
     private double consumptionElectric;
 
+        
+    private Soat soat;
+
+    private Document propertyC;
+
+    private MechanicalReview mechanical;
+
 
 
                     
 	/**
     *  Description: Method constructor
+    * @param id <int>, must be initialized
 	 * @param basePrice <double>, must be initialized 
 	 * @param soldPrice <double>, must be initialized
 	 * @param mark <String>, must be initialized
@@ -58,10 +66,10 @@ public class Hybrid extends Automobiles implements iCalculateTotalSoldPrice{
      * @param consumptionElectric <double>, must be initialized
     * */
 
-    public Hybrid(double basePrice, double soldPrice, String mark, String model, double cylinderCapacity,
+    public Hybrid(int id, double basePrice, double soldPrice, String mark, int model, double cylinderCapacity,
     double milage, TYPEVEHICULE type, String plate,Document propertyC, Soat soat, MechanicalReview mechanical,TYPEAUTOMOBILE typeAutomobiles, int numOfDoors, String polarized, double tankCapacity,
             TYPEGASOLINE typeGasoline, double consumptionGasoline, TYPECHARGER typeCharger, double duration, double consumptionElectric) {
-        super(basePrice, soldPrice, mark, model, cylinderCapacity, milage, type, plate, propertyC, soat, mechanical, typeAutomobiles, numOfDoors, polarized);
+        super(id, basePrice, soldPrice, mark, model, cylinderCapacity, milage, type, plate, propertyC, soat, mechanical, typeAutomobiles, numOfDoors, polarized);
 
         this.tankCapacity=tankCapacity;
         this.typeGasoline=typeGasoline;
@@ -69,6 +77,9 @@ public class Hybrid extends Automobiles implements iCalculateTotalSoldPrice{
         this.typeCharger=typeCharger;
         this.duration=duration;
         this.consumptionElectric=consumptionElectric;
+        this.soat=soat;
+        this.propertyC=propertyC;
+        this.mechanical=mechanical;
         
     }
     
@@ -86,21 +97,35 @@ public class Hybrid extends Automobiles implements iCalculateTotalSoldPrice{
             totalSold+=500000;
         }
 
+        
+        if(type==TYPEVEHICULE.USED){
+            basePrice=basePrice-(basePrice*0.1);
+        }
+
         totalSold+=basePrice+(basePrice*0.15);
 
-        if(type==TYPEVEHICULE.USED){
-            totalSold=totalSold-(totalSold*0.1);
-        }
 
         return "The total sold price is: "+ totalSold;
 
+    }
+
+    public Soat getSoat(){
+        return soat;
+    }
+
+    public Document getPropertyC(){
+        return propertyC;
+    }
+
+    public MechanicalReview getMechanical(){
+        return mechanical;
     }
     
     @Override
     public String toString(){
         return super.toString() + "\n the tank capacity of the automobile are: " + tankCapacity + " gallons" + "\nthe type of galosine is: " 
         + typeGasoline + "\nThe consumption is: " + consumptionGasoline + " gallons/km" + "\nThe type of charger is: " + typeCharger + "\nThe duration are: " + duration + " Per kilometer" + 
-        "\nThe consumption is: " + consumptionElectric + " kilowatts/km\n" + totalSoldPrice();
+        "\nThe consumption is: " + consumptionElectric + " kilowatts/km\n" + "\n"+totalSoldPrice()+"\nThe id of the vehicule is: " + super.getId();
     }
 
     

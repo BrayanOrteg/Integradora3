@@ -1,5 +1,7 @@
 package ui;
 import model.Concessionaire;
+
+import java.util.Random;
 import java.util.Scanner;
 
 /** Main Class - Development of the problem
@@ -17,7 +19,8 @@ public class Main{
     * Description: The constructor of the class
     * */
    public Main() {
-      concessionaireCall= new Concessionaire("ajja");
+    Init init = new Init();
+      concessionaireCall = new Concessionaire (init.initVehicules());
       scan= new Scanner(System.in);
    }
 
@@ -58,6 +61,29 @@ public class Main{
         printInformation(); 
         
          break;
+
+      case 3:
+        printDocumentsInformationForId();
+
+        break;
+
+        case 4:
+        printParking();
+
+        break;
+
+        case 5:
+        informationBetweenYears();
+
+        break;
+
+        case 6:
+        theOldestCar();
+
+        break;
+
+
+        
       
       default:
          System.out.println("Error, option no valid");
@@ -72,15 +98,17 @@ public class Main{
 
    public void addVehicule(){
 
-    int typeMotorcy=0,typeCombustible=0,carOrMoto=0,typeVehicule=0, typeAutomobil=0, typeGasolin=0,typeCharge=0, yearReview=0, numOfDoors=0, yearProperty=0, yearSoat=0;
+    int id=0, model=0 ,typeMotorcy=0,typeCombustible=0,carOrMoto=0,typeVehicule=0, typeAutomobil=0, typeGasolin=0,typeCharge=0, yearReview=0, numOfDoors=0, yearProperty=0, yearSoat=0;
     double basePrice=0, soldPrice=0, cylinderCapacity=0, milage=0, tankCapacity=0, priceProperty=0, priceSoat=0, coverageSoat=0, priceReview=0, gasLevesReview=0, capacityGasoline=0,
             duration=0, consumptionElectric=0, consumptionGas=0, consumption=0;
-    String mark="", model="", plate="", polarized="";
+    String mark="", plate="", polarized="";
 
         System.out.println("Register a vehicule");
         System.out.println("Insert the type of the vehicule of add"+"\n (1)Car || (2)Motorcycle");
         carOrMoto=scan.nextInt();
         scan.nextLine();
+
+        id=(int) (Math.random() * 2000);
 
         //Switch case for if is a car or moto
         switch(carOrMoto){
@@ -108,10 +136,6 @@ public class Main{
                         basePrice=scan.nextDouble();
                         scan.nextLine();
 
-                        System.out.println("");
-                        System.out.println("Insert the sold price of the car");
-                        soldPrice=scan.nextDouble();
-                        scan.nextLine();
 
                         System.out.println("");
                         System.out.println("What is the mark of the car?");
@@ -120,7 +144,7 @@ public class Main{
 
                         System.out.println("");
                         System.out.println("Insert the model of the car. Example(2001)");
-                        model=scan.next();
+                        model=scan.nextInt();
                         scan.nextLine();
 
                         System.out.println("");
@@ -184,7 +208,7 @@ public class Main{
 
                                 consumptionGas=tankCapacity*(cylinderCapacity/150);
 
-                                concessionaireCall.addGasolineAutomobile(typeVehicule, typeAutomobil, typeGasolin, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, numOfDoors, polarized, tankCapacity, consumptionGas, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
+                                concessionaireCall.addGasolineAutomobile(id, typeVehicule, typeAutomobil, typeGasolin, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, numOfDoors, polarized, tankCapacity, consumptionGas, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
 
                             break;
                             
@@ -209,7 +233,7 @@ public class Main{
                                     }
 
 
-                                concessionaireCall.addElectricAutomobile(typeVehicule, typeAutomobil, typeCharge, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, numOfDoors, polarized, duration, consumptionElectric, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
+                                concessionaireCall.addElectricAutomobile(id, typeVehicule, typeAutomobil, typeCharge, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, numOfDoors, polarized, duration, consumptionElectric, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
                             
 
                             break;
@@ -249,7 +273,7 @@ public class Main{
 
                                 }
 
-                                concessionaireCall.addHybridAutomobile(typeVehicule, typeAutomobil, typeCharge, typeGasolin, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, numOfDoors, polarized, duration, consumptionElectric, tankCapacity, consumptionGas, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
+                                concessionaireCall.addHybridAutomobile(id, typeVehicule, typeAutomobil, typeCharge, typeGasolin, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, numOfDoors, polarized, duration, consumptionElectric, tankCapacity, consumptionGas, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
 
 
 
@@ -276,10 +300,6 @@ public class Main{
                         basePrice=scan.nextDouble();
                         scan.nextLine();
 
-                        System.out.println("");
-                        System.out.println("Insert the sold price of the car");
-                        soldPrice=scan.nextDouble();
-                        scan.nextLine();
 
                         System.out.println("");
                         System.out.println("What is the mark of the car?");
@@ -288,7 +308,7 @@ public class Main{
 
                         System.out.println("");
                         System.out.println("Insert the model of the car. Example(2001)");
-                        model=scan.next();
+                        model=scan.nextInt();
                         scan.nextLine();
 
                         System.out.println("");
@@ -380,14 +400,6 @@ public class Main{
     
                         }
 
-                            
-                        if(yearSoat<2021){
-                            priceSoat=0;
-                            coverageSoat=0;
-                            yearSoat=0;
-
-                            System.out.println("The soat is expired");
-                        }
 
                         System.out.println("");
                         System.out.println("**Property card**");
@@ -426,7 +438,7 @@ public class Main{
 
                                 consumptionGas=tankCapacity*(cylinderCapacity/150);
 
-                                concessionaireCall.addGasolineAutomobile(typeVehicule, typeAutomobil, typeGasolin, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, numOfDoors, polarized, tankCapacity, consumptionGas, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
+                                concessionaireCall.addGasolineAutomobile(id, typeVehicule, typeAutomobil, typeGasolin, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, numOfDoors, polarized, tankCapacity, consumptionGas, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
 
                             break;
                             
@@ -450,7 +462,7 @@ public class Main{
     
                                     }
 
-                                concessionaireCall.addElectricAutomobile(typeVehicule, typeAutomobil, typeCharge, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, numOfDoors, polarized, duration, consumptionElectric, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
+                                concessionaireCall.addElectricAutomobile(id, typeVehicule, typeAutomobil, typeCharge, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, numOfDoors, polarized, duration, consumptionElectric, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
                             
 
                             break;
@@ -489,7 +501,7 @@ public class Main{
 
                                 }
 
-                                concessionaireCall.addHybridAutomobile(typeVehicule, typeAutomobil, typeCharge, typeGasolin, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, numOfDoors, polarized, duration, consumptionElectric, tankCapacity, consumptionGas, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
+                                concessionaireCall.addHybridAutomobile(id, typeVehicule, typeAutomobil, typeCharge, typeGasolin, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, numOfDoors, polarized, duration, consumptionElectric, tankCapacity, consumptionGas, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
 
 
 
@@ -534,10 +546,6 @@ public class Main{
                     basePrice=scan.nextDouble();
                     scan.nextLine();
 
-                    System.out.println("");
-                    System.out.println("Insert the sold price of the motorcycle");
-                    soldPrice=scan.nextDouble();
-                    scan.nextLine();
 
                     System.out.println("");
                     System.out.println("What is the mark of the motorcycle?");
@@ -546,7 +554,7 @@ public class Main{
 
                     System.out.println("");
                     System.out.println("Insert the model of the motorcycle. Example(2001)");
-                    model=scan.next();
+                    model=scan.nextInt();
                     scan.nextLine();
 
                     System.out.println("");
@@ -579,7 +587,7 @@ public class Main{
                     gasLevesReview=scan.nextDouble();
                     scan.nextLine();
 
-                    concessionaireCall.addMotorVehicule(typeVehicule, typeMotorcy, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, capacityGasoline, consumption, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
+                    concessionaireCall.addMotorVehicule(id, typeVehicule, typeMotorcy, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, capacityGasoline, consumption, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
 
                     break;
                 
@@ -597,10 +605,6 @@ public class Main{
                     basePrice=scan.nextDouble();
                     scan.nextLine();
 
-                    System.out.println("");
-                    System.out.println("Insert the sold price of the motorcycle");
-                    soldPrice=scan.nextDouble();
-                    scan.nextLine();
 
                     System.out.println("");
                     System.out.println("What is the mark of the motorcycle?");
@@ -609,7 +613,7 @@ public class Main{
 
                     System.out.println("");
                     System.out.println("Insert the model of the motorcycle. Example(2001)");
-                    model=scan.next();
+                    model=scan.nextInt();
                     scan.nextLine();
 
                     System.out.println("");
@@ -701,7 +705,7 @@ public class Main{
                     yearProperty=scan.nextInt();
                     scan.nextLine();
 
-                    concessionaireCall.addMotorVehicule(typeVehicule, typeMotorcy, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, capacityGasoline, consumption, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
+                    concessionaireCall.addMotorVehicule(id, typeVehicule, typeMotorcy, basePrice, soldPrice, mark, model, cylinderCapacity, milage, plate, capacityGasoline, consumption, priceProperty, yearProperty, priceSoat, yearSoat, coverageSoat, priceReview, yearReview, gasLevesReview);
 
                 break;
 
@@ -746,6 +750,65 @@ public class Main{
 
    }
 
+   /**
+    * Description: This method ask for the id and called the method showDocumentsStateForId
+    */
+
+   public void printDocumentsInformationForId(){
+       int id=0;
+        System.out.println(" ");
+        System.out.println("CONSULT DOCUMENT INFORMATION BY ID");
+        System.out.println("Insert the id of the car");
+        id=scan.nextInt();
+        scan.nextLine();
+
+        concessionaireCall.showDocumentsStateForId(id);
+
+
+   }
+
+   
+   /**
+    * Description: This method call the method printParkingLot in the controler
+    */
+
+   public void printParking(){
+       concessionaireCall.printParkingLot();
+   }
+
+    /**
+    * Description: This method call the method vehiclesByYearRange in the controler and ask for the values 
+    */
+
+   public void informationBetweenYears(){
+       int year1=0, year2=0;
+    System.out.println(" ");
+    System.out.println("Car information between a range of years");
+
+    System.out.println(" ");
+    System.out.println("Insert major year");
+    year1=scan.nextInt();
+    scan.nextLine();
+
+    System.out.println(" ");
+    System.out.println("Insert minor year");
+    year2=scan.nextInt();
+    scan.nextLine();
+
+    concessionaireCall.vehiclesByYearRange(year1,year2);
+
+
+    
+   }
+
+   /**
+    * Description: This method call the method theOldsCarInTheParking in the controler
+    */
+
+   public void theOldestCar(){
+       concessionaireCall.theOldsCarInTheParking();
+   }
+
 
 
    /**
@@ -759,6 +822,10 @@ public class Main{
             "Select a option to start\n" +
             "(1) to add a vehicule\n" +
             "(2) to print the information of the vehicules\n"+
+            "(3) Consult documents information of a car by id\n"+
+            "(4) Print the parking\n"+
+            "(5) Car information between a range of years\n"+
+            "(6) The oldest car in the parking\n"+
             "(0) to exit\n"
             );
       option= scan.nextInt();

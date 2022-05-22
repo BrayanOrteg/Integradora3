@@ -18,12 +18,20 @@ public class Gasoline extends Automobiles implements iCalculateTotalSoldPrice{
     * */
     private double consumption;
 
+        
+    private Soat soat;
+
+    private Document propertyC;
+
+    private MechanicalReview mechanical;
+
 
 
 
                 
 	/**
     *  Description: Method constructor
+    	 * @param id <int>, must be initialized
 	 * @param basePrice <double>, must be initialized 
 	 * @param soldPrice <double>, must be initialized
 	 * @param mark <String>, must be initialized
@@ -42,14 +50,17 @@ public class Gasoline extends Automobiles implements iCalculateTotalSoldPrice{
      * @param consumption <double>, must be initialized
     * */
 
-    public Gasoline(double basePrice, double soldPrice, String mark, String model, double cylinderCapacity,
+    public Gasoline(int id, double basePrice, double soldPrice, String mark, int model, double cylinderCapacity,
     double milage, TYPEVEHICULE type, String plate, Document propertyC, Soat soat, MechanicalReview mechanical,TYPEAUTOMOBILE typeAutomobiles, int numOfDoors, String polarized, double tankCapacity,
             TYPEGASOLINE typeGasoline, double consumption) {
-        super(basePrice, soldPrice, mark, model, cylinderCapacity, milage, type, plate, propertyC, soat, mechanical, typeAutomobiles, numOfDoors, polarized);
+        super(id, basePrice, soldPrice, mark, model, cylinderCapacity, milage, type, plate, propertyC, soat, mechanical, typeAutomobiles, numOfDoors, polarized);
 
         this.tankCapacity=tankCapacity;
         this.typeGasoline=typeGasoline;
         this.consumption=consumption;
+        this.soat=soat;
+        this.propertyC=propertyC;
+        this.mechanical=mechanical;
 
 
     }
@@ -69,21 +80,34 @@ public class Gasoline extends Automobiles implements iCalculateTotalSoldPrice{
             totalSold+=500000;
         }
 
+        
+        if(type==TYPEVEHICULE.USED){
+            basePrice=basePrice-(basePrice*0.1);
+        }
+
         totalSold+=basePrice;
 
-        if(type==TYPEVEHICULE.USED){
-            totalSold=totalSold-(totalSold*0.1);
-        }
 
         return "The total sold price is: "+ totalSold;
 
+    }
+    public Soat getSoat(){
+        return soat;
+    }
+
+    public Document getPropertyC(){
+        return propertyC;
+    }
+
+    public MechanicalReview getMechanical(){
+        return mechanical;
     }
 
     
     @Override
     public String toString(){
         return super.toString() + "\nthe tank capacity of the automobile are: " + tankCapacity + " gallons" + "\nthe type of galosine is: " 
-        + typeGasoline + "\nThe consumption is: " + consumption + " gallons/km\n"+ totalSoldPrice();
+        + typeGasoline + "\nThe consumption is: " + consumption + " gallons/km\n"+ "\n"+totalSoldPrice()+"\nThe id of the vehicule is: " + super.getId();
     }
 
 

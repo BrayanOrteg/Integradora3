@@ -4,6 +4,7 @@ package model;
 public abstract class Vehicule{
 
         
+    private int id;
 	/**
     *  Description: this var its the base price
     * */
@@ -12,7 +13,7 @@ public abstract class Vehicule{
 	/**
     *  Description: this var its the sold price
     * */
-    private double soldPrice;
+    protected double soldPrice;
         
 	/**
     *  Description: this var its the mark of the vehicule
@@ -22,7 +23,7 @@ public abstract class Vehicule{
 	/**
     *  Description: this var its the model of vehicule
     * */
-    private String model;
+    private int model;
         
 	/**
     *  Description: this var its the Cylinder capacity
@@ -55,6 +56,7 @@ public abstract class Vehicule{
         
 	/**
     *  Description: Method constructor
+        	 * @param id <int>, must be initialized
 	 * @param basePrice <double>, must be initialized 
 	 * @param soldPrice <double>, must be initialized
 	 * @param mark <String>, must be initialized
@@ -68,10 +70,11 @@ public abstract class Vehicule{
     * */
 
 
-    public Vehicule(double basePrice, double soldPrice, String mark, String model, double cylinderCapacity,
+    public Vehicule(int id, double basePrice, double soldPrice, String mark, int model, double cylinderCapacity,
             double milage, TYPEVEHICULE type, String plate, Document propertyC, Soat soat, MechanicalReview mechanical) {
 
         this.basePrice = basePrice;
+        this.id=id;
         this.soldPrice = soldPrice;
         this.mark = mark;
         this.model = model;
@@ -88,6 +91,14 @@ public abstract class Vehicule{
         
     }
 
+    public int getId(){
+        return id;
+    }
+    
+    public int getModel(){
+        return model;
+    }
+
     
     public TYPEVEHICULE getType(){
         return type;
@@ -97,7 +108,7 @@ public abstract class Vehicule{
         String docMsg="";
         
         
-        docMsg+= "\n"+"**PROPERTY CARD**\n" + documents[0].toString() + "\n";
+        docMsg+= "\n"+ documents[0].toString() + "\n";
 
         docMsg+= ((Soat)documents[1]).toString() + "\n";
             
@@ -105,7 +116,7 @@ public abstract class Vehicule{
             
             
 
-        return "\nThe base price of the vehicule is: "+ basePrice+ "\nThe sold Price is:" + soldPrice + "\n the mark is: " + mark + "\nThe model is: "+ model + 
+        return "\nThe base price of the vehicule is: "+ basePrice + "\nthe mark is: " + mark + "\nThe model is: "+ model + 
         "\nThe cylinder capacity is: " + cylinderCapacity + "\nThe milage is: " + milage + "\nThe type of the vehicule is: " + type + 
         "\nThe plate is: " + plate + "\n" +"\n**The documents*** " +"\n"+ docMsg;    
     }
