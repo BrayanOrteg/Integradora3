@@ -44,7 +44,7 @@ public class Soat extends Document{
         int i=getYear();
 
         if(i !=0){
-        return "**SOAT**\n"+ "\nThe price of the document is: "+ price + "\nThe year is: " + year + "\nThe image= \n"+ "\n"+printImage(image) + "\n"
+        return "\n"+"**SOAT**\n"+ "\nThe price of the document is: "+ price + "\nThe year is: " + year + "\nThe image= \n"+ "\n"+printImage(image) + "\n"
                 +"\nThe Soat number is: "+ soatCode(image)+"\nThe coverage of the soat is: " + coverage + "\n";
         }else{
             return "Dont have Soat";

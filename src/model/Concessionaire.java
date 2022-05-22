@@ -474,11 +474,12 @@ public class Concessionaire{
 
         int contGasolineCars=0, countElectricCars=0, countHibridCars=0, countMotorcycle=0;
 
-        System.out.println("***CARS***");
+        
 
         switch(typeVehicule){
 
             case 1:
+                System.out.println("***CARS***");
 
                 switch(typeCombustible){
 
