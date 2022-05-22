@@ -930,11 +930,11 @@ public class Concessionaire{
                 
 
             }
-                System.out.println("");                                   
-                System.out.println("**THE DOCUMENTS CODES**");
-                System.out.println(documentsCode);
 
         }
+        System.out.println("");                                   
+        System.out.println("**THE DOCUMENTS CODES**");
+        System.out.println(documentsCode);
 
 
 
